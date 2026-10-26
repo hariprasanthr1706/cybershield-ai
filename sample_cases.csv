@@ -1,0 +1,5 @@
+case_id,type,input,expected_note
+1,message,"Urgent: verify now or your account suspended. Send OTP immediately.","Multiple common warning patterns should be reported"
+2,message,"Our club meeting starts at 3 PM in the library.","No configured keyword patterns should be reported"
+3,url,"http://192.168.1.25/login","HTTP and IP-address indicators should be reported"
+4,url,"https://example.com","No configured URL indicators; this does not prove safety"

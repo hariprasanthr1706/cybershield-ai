@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CyberShield AI | Scam & Phishing Awareness</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="mark">🛡️</div>
+      <p class="eyebrow">DIGITAL SAFETY • SOCIAL IMPACT</p>
+      <h1>CyberShield <span>AI</span></h1>
+      <p class="subtitle">Intelligent Scam and Phishing Detection</p>
+      <p class="intro">Check suspicious messages and links for common warning signs. This prototype provides awareness guidance, not a definitive verdict.</p>
+    </header>
+
+    <form method="post" class="panel">
+      <label for="message">Suspicious message (optional)</label>
+      <textarea id="message" name="message" rows="5" placeholder="Paste the message here…">{{ text_input }}</textarea>
+      <label for="url">Suspicious URL (optional)</label>
+      <input id="url" name="url" type="text" placeholder="example.com/login" value="{{ url_input }}">
+      <button type="submit">Analyse for warning signs</button>
+      <p class="privacy">Avoid entering real passwords, OTPs, bank details, or private personal information.</p>
+    </form>
+
+    {% if result %}
+      <section class="results" aria-live="polite">
+        <h2>Analysis results</h2>
+        {% for name, item in result %}
+          <article class="result-card">
+            <h3>{{ name }}</h3>
+            <p class="level">{{ item.level }}</p>
+            {% if item.signals %}
+              <ul>{% for signal in item.signals %}<li>{{ signal }}</li>{% endfor %}</ul>
+            {% else %}
+              <p>No configured warning patterns were found. This does not prove the content is safe.</p>
+            {% endif %}
+            <p class="advice">{{ item.advice }}</p>
+          </article>
+        {% endfor %}
+      </section>
+    {% endif %}
+
+    <section class="tips">
+      <h2>Stay safer online</h2>
+      <ul>
+        <li>Never share an OTP, password, or UPI PIN with anyone.</li>
+        <li>Verify urgent requests using a known, official phone number or app.</li>
+        <li>Check the domain carefully before signing in or paying.</li>
+        <li>If you suspect fraud in India, report it through official cybercrime channels.</li>
+      </ul>
+    </section>
+    <footer>Student prototype • Rule-based baseline • Not a replacement for professional security tools</footer>
+  </main>
+</body>
+</html>
